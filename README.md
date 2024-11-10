@@ -24,3 +24,5 @@ bun preview
 3. **TypeScript only code base**. However the typing is not enforced to be as strict as possible. Lousely defined types based on "any", "unknown" and the like are welcome to simplify rather complex types that might not be fully known before hand.
 
 4. **Server side and client side must coexist and cooperate**. The project structure must allow shared code for both sides to be easily reused and the bundling pipeline must generate at least one bundle for the server and one other bundle for the client (the later has to be also injected into the generated HTML output).
+
+5. **Tests are meant for tricky features**. There is no point on aiming at high percent coverage. The real deal is to have tests that prevent already working features from breaking after some unintended change. The main focus is on shared code and public APIs.
