@@ -1,0 +1,16 @@
+{
+  "name": "jsxr-poc",
+  "version": "0.1",
+  "scripts": {
+    "dev": "bun --hot run --inspect src/index.tsx",
+    "clean": "rm -rf dist",
+    "test": "bun test",
+    "check": "tsc --noEmit",
+    "bundle": "NODE_ENV=production bun build src/index.tsx --outfile ./dist/app.mjs --target node",
+    "dist": "bun clean && bun check && bun test && bun bundle && cp -R src/static dist",
+    "preview": "bun dist && cd dist && node app.mjs"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.12"
+  }
+}

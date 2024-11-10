@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strict": true,
+    "baseUrl": "./src/modules",
+    "paths": {
+      "jsxr": ["jsxr"],
+      "ssr": ["ssr"],
+      "httpw": ["httpw"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "jsxr"
+  }
+}
