@@ -2,6 +2,19 @@
 
 PoC for a node-based server with SSR using a custom, dependency-free JSX implementation and a few opinionated abstractions to create a framework-like DX powered by Bun for development and NodeJS for production.
 
+# Quickstart
+
+## Pre-requisites
+
+Having a shell able to handle POSIX 'cp' commands and '&&' command chaining operator. Probably Windows CMD is the only one unable to fulfill those requirements (just a hunch, not actually tested 😁).
+
+```sh
+gh repo clone lemux-one/jsxr-poc
+cd ./jsxr-poc
+bun install
+bun preview
+```
+
 # Goals
 
 1. **Keep dependencies to an absolute minimum (if any)**. The "node_modules" folder should, ideally, only hold type definitions for development and nothing once the app is bundled. Ergo: all features must be either built-in in the target platform (NodeJS/Browser) or self implemented.
