@@ -8,11 +8,24 @@ PoC for a node-based server with SSR using a custom, dependency-free JSX impleme
 
 Having a shell able to handle POSIX 'cp' commands and '&&' command chaining operator. Probably Windows CMD is the only one unable to fulfill those requirements (just a hunch, not actually tested 😁).
 
+## Launch it locally
+
+The following steps will bundle and run the project is it would be run in a production environment.
+
 ```sh
 gh repo clone lemux-one/jsxr-poc
 cd ./jsxr-poc
 bun install
 bun preview
+```
+
+For a dev mode, having a more robust DX, do the following instead.
+
+```sh
+gh repo clone lemux-one/jsxr-poc
+cd ./jsxr-poc
+bun install
+bun dev
 ```
 
 # Goals
