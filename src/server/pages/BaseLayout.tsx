@@ -4,9 +4,9 @@ export function BaseLayout(props: any) {
     <html lang="eng">
       <head>
         <title>{title} | JSXR Playground</title>
+        <link rel="stylesheet" href="/static/index.css"></link>
       </head>
-      <body>{children}</body>
-      <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
+      <body class="bg-background">{children}</body>
     </html>
   );
 }

@@ -1,0 +1,34 @@
+/* This is to to load the absolute mimimum */
+/*
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+*/
+@import "tailwindcss";
+
+/* Target only the desired folder */
+@source "../../src";
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --internal-bg: #1c1c1c;
+    --internal-primary: cyan;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --internal-bg: white;
+    --internal-primary: blue;
+  }
+}
+
+/* Extend theme */
+@theme {
+  /* Clear the whole default theme definition */
+  --*: initial;
+
+  /* Custom theme definition */
+  --color-primary: var(--internal-primary);
+  --color-background: var(--internal-bg);
+}
