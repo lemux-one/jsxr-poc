@@ -2,14 +2,15 @@
   "name": "jsxr-poc",
   "version": "0.1",
   "scripts": {
-    "dev:twd": "bun x tailwindcss -w -i src/client/index.css -o _dev/static/index.css",
+    "dev:twd": "bun x tailwindcss --watch --input src/client/index.css --output _dev/static/index.css",
     "dev:src": "bun --hot run --inspect src/index.tsx",
     "dev": "concurrently \"bun dev:twd\" \"bun dev:src\"",
     "clean": "rm -rf dist && rm -rf _dev",
     "test": "bun test",
     "check": "tsc --noEmit",
-    "bundle": "NODE_ENV=production bun build src/index.tsx --outfile ./dist/app.mjs --target node",
-    "dist": "bun clean && bun check && bun test && bun bundle && cp -R src/static dist",
+    "bundle:app": "NODE_ENV=production bun build src/index.tsx --outfile ./dist/app.mjs --target node",
+    "bundle:css": "bun x tailwindcss --minify --input src/client/index.css --output dist/static/index.css",
+    "dist": "bun clean && bun check && bun test && bun bundle:app && cp -R src/static dist && bun bundle:css",
     "preview": "bun dist && cd dist && node app.mjs"
   },
   "devDependencies": {
