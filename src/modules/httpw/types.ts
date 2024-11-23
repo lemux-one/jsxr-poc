@@ -5,7 +5,7 @@ interface IHttpContext {
   res: ServerResponse<IncomingMessage>;
   text(text: string): void;
   html(node: unknown): void;
-  file(path: string, mime?: string): void;
+  file(paths: string[], mime?: string): void;
 }
 
 interface IHandler {

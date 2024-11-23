@@ -10,7 +10,7 @@ import { IHttpContext, TServerParams } from "./types";
 import { html } from "ssr";
 import { guessMimeType } from "./utils";
 
-function notFound(res: ServerResponse, reason = "") {
+function notFound(res: ServerResponse, reason = "Not found") {
   const responseStatus = 404;
   console.warn(`[${responseStatus}] ${reason}`);
   res.writeHead(responseStatus, STATUS_CODES[responseStatus], {
@@ -19,7 +19,7 @@ function notFound(res: ServerResponse, reason = "") {
   res.end();
 }
 
-function internalError(res: ServerResponse, reason = "") {
+function internalError(res: ServerResponse, reason = "Internal error") {
   const responseStatus = 500;
   console.error(`[${responseStatus}] ${reason}`);
   res.writeHead(responseStatus, STATUS_CODES[responseStatus], {
@@ -43,16 +43,23 @@ function createContext(
       res.writeHead(200, { "content-type": "text/html" });
       res.end(html(node));
     },
-    async file(path, mime) {
-      try {
-        await access(path, constants.R_OK);
-        const contents = await readFile(path);
-        const ext = pathExtName(path);
-        const contentType = mime ?? guessMimeType(ext);
-        res.writeHead(200, { "content-type": contentType });
-        res.end(contents);
-      } catch (err) {
-        notFound(res, `ERROR: ${err}`);
+    async file(paths, mime) {
+      let found = true;
+      for (const path of paths) {
+        try {
+          found = true;
+          await access(path, constants.R_OK);
+          const contents = await readFile(path);
+          const ext = pathExtName(path);
+          const contentType = mime ?? guessMimeType(ext);
+          res.writeHead(200, { "content-type": contentType });
+          res.end(contents);
+        } catch (_err) {
+          found = false;
+        }
+      }
+      if (!found) {
+        notFound(res);
         return;
       }
     },

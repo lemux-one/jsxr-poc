@@ -13,7 +13,10 @@ start({
         const relativePath = isFavicon(c.req)
           ? "favicon.ico"
           : String(c.req.url).split(env().staticPrefix)[1];
-        c.file(join(env().staticDir, relativePath));
+        const fileCandidates = env().staticDirs.map((staticDir) =>
+          join(staticDir, relativePath)
+        );
+        c.file(fileCandidates);
       },
     },
     {
