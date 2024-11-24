@@ -7,6 +7,7 @@ export function BaseLayout(props: any) {
         <link rel="stylesheet" href="/static/index.css"></link>
       </head>
       <body class="bg-background">{children}</body>
+      <script src="/static/index.js"></script>
     </html>
   );
 }

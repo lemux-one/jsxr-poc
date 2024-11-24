@@ -1,7 +1,6 @@
 import { isFavicon, isGet, isStatic, start } from "httpw";
 import { env, join } from "./server/utils";
-import { Home } from "./server/pages/Home";
-import { BaseLayout } from "./server/pages/BaseLayout";
+import { HomePage } from "./server/pages/HomePage";
 
 start({
   port: env().port,
@@ -22,11 +21,7 @@ start({
     {
       accepts: (req) => isGet(req) && req.url === "/",
       handle(c) {
-        c.html(
-          <BaseLayout title="Main">
-            <Home />
-          </BaseLayout>
-        );
+        c.html(<HomePage />);
       },
     },
   ],
