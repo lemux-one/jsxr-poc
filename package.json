@@ -11,7 +11,8 @@
     "bundle:app": "NODE_ENV=production bun build src/index.tsx --outfile ./dist/app.mjs --target node",
     "bundle:css": "bun x tailwindcss --minify --input src/client/index.css --output dist/static/index.css",
     "dist": "bun clean && bun check && bun test && bun bundle:app && cp -R src/static dist && bun bundle:css",
-    "preview": "bun dist && cd dist && node app.mjs"
+    "preview": "bun dist && cd dist && node app.mjs",
+    "demo": "cd dist && NODE_ENV=production NODE_HOST=0.0.0.0 NODE_PORT=3333 node app.mjs"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.0.0-beta.2",
