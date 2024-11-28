@@ -31,12 +31,6 @@
   --color-foreground: var(--internal-dynamic-color-fg);
   --color-background: var(--internal-dynamic-color-bg);
   --color-primary: var(--internal-dynamic-color-primary);
-
-  /* Overrides */
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  --tw-bg: var(--color-background);
-  --tw-text: var(--color-foreground);
 }
 
 /* Extend base */
