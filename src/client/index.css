@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @source "../../src";
 
-/* Fallback in case media queries are not available at all */
+/* Fallback */
 :root {
   --internal-dynamic-color-fg: black;
   --internal-dynamic-color-bg: white;
@@ -28,22 +28,18 @@
 
 /* Extend theme */
 @theme {
-  /* Clear the whole default theme definition */
-  /* --*: initial; */
-
-  /* Custom theme definition */
   --color-foreground: var(--internal-dynamic-color-fg);
   --color-background: var(--internal-dynamic-color-bg);
   --color-primary: var(--internal-dynamic-color-primary);
 
-  /* Override some utilities to align with dynamic theme variables */
+  /* Overrides */
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
   --tw-bg: var(--color-background);
   --tw-text: var(--color-foreground);
 }
 
-/* Extend base layer with convenient defaults */
+/* Extend base */
 @layer base {
   html,
   body {
