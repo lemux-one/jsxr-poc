@@ -1,14 +1,14 @@
-/* This is to to load the absolute mimimum */
-/*
-@layer theme, base, components, utilities;
-@import "tailwindcss/theme" layer(theme);
-@import "tailwindcss/utilities" layer(utilities);
-*/
 @import "tailwindcss";
-
-/* Target only the desired folder */
 @source "../../src";
 
+/* Fallback in case media queries are not available at all */
+:root {
+  --internal-dynamic-color-fg: black;
+  --internal-dynamic-color-bg: white;
+  --internal-dynamic-color-primary: blue;
+}
+
+/* Dark */
 @media (prefers-color-scheme: dark) {
   :root {
     --internal-dynamic-color-fg: white;
@@ -17,6 +17,7 @@
   }
 }
 
+/* Light */
 @media (prefers-color-scheme: light) {
   :root {
     --internal-dynamic-color-fg: #1c1c1c;
@@ -28,26 +29,34 @@
 /* Extend theme */
 @theme {
   /* Clear the whole default theme definition */
-  --*: initial;
+  /* --*: initial; */
 
   /* Custom theme definition */
   --color-foreground: var(--internal-dynamic-color-fg);
   --color-background: var(--internal-dynamic-color-bg);
   --color-primary: var(--internal-dynamic-color-primary);
+
+  /* Override some utilities to align with dynamic theme variables */
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  --tw-bg: var(--color-background);
+  --tw-text: var(--color-foreground);
 }
 
-/* General styles */
-html,
-body {
-  background-color: var(--color-background);
-}
+/* Extend base layer with convenient defaults */
+@layer base {
+  html,
+  body {
+    background-color: var(--color-background);
+  }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-span {
-  color: var(--color-foreground);
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  span {
+    color: var(--color-foreground);
+  }
 }
