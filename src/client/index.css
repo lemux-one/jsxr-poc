@@ -11,15 +11,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --internal-bg: #1c1c1c;
-    --internal-primary: cyan;
+    --internal-dynamic-color-fg: white;
+    --internal-dynamic-color-bg: #1c1c1c;
+    --internal-dynamic-color-primary: cyan;
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --internal-bg: white;
-    --internal-primary: blue;
+    --internal-dynamic-color-fg: #1c1c1c;
+    --internal-dynamic-color-bg: white;
+    --internal-dynamic-color-primary: blue;
   }
 }
 
@@ -29,6 +31,22 @@
   --*: initial;
 
   /* Custom theme definition */
-  --color-primary: var(--internal-primary);
-  --color-background: var(--internal-bg);
+  --color-foreground: var(--internal-dynamic-color-fg);
+  --color-background: var(--internal-dynamic-color-bg);
+  --color-primary: var(--internal-dynamic-color-primary);
+}
+
+/* General styles */
+html,
+body {
+  background-color: var(--color-background);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--color-foreground);
 }
