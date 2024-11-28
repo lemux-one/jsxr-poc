@@ -1,6 +1,6 @@
 import { isGet, start } from "httpw";
 import { env } from "./server/utils";
-import { HomePage } from "./server/pages/HomePage";
+import { HomePage } from "./server/ui/pages/HomePage";
 import { staticHandler } from "./server/handlers";
 
 start({

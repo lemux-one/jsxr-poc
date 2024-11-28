@@ -6,7 +6,7 @@ export function BaseLayout(props: any) {
         <title>{title} | JSXR Playground</title>
         <link rel="stylesheet" href="/static/index.css"></link>
       </head>
-      <body class="bg-background">{children}</body>
+      <body>{children}</body>
       <script src="/static/index.js"></script>
     </html>
   );
