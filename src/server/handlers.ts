@@ -3,7 +3,7 @@ import { env, join } from "./utils";
 import { IHandler } from "httpw/types";
 
 const staticHandler: IHandler = {
-  accepts: (req) => isStatic(req),
+  accepts: (c) => isStatic(c.req),
   handle(c) {
     const relativePath = isFavicon(c.req)
       ? "favicon.ico"

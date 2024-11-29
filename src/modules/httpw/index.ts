@@ -30,11 +30,13 @@ function internalError(res: ServerResponse, reason = "Internal error") {
 
 function createContext(
   req: IncomingMessage,
-  res: ServerResponse
+  res: ServerResponse,
+  url: URL
 ): IHttpContext {
   return {
     req,
     res,
+    url,
     text(text) {
       res.writeHead(200, { "content-type": "text/plain" });
       res.end(text);
@@ -74,8 +76,10 @@ function start(params: TServerParams) {
     console.debug(`${req.method}: ${req.url}`);
     try {
       for (const handler of handlers) {
-        if (handler.accepts(req)) {
-          handler.handle(createContext(req, res));
+        const url = new URL(req.url ?? "", `http://${req.headers.host}`);
+        const httpContext = createContext(req, res, url);
+        if (handler.accepts(httpContext)) {
+          handler.handle(httpContext);
           return;
         }
       }
