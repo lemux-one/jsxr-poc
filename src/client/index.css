@@ -28,7 +28,9 @@
 
 /* Extend theme */
 @theme {
+  --color-fg: var(--internal-dynamic-color-fg);
   --color-foreground: var(--internal-dynamic-color-fg);
+  --color-bg: var(--internal-dynamic-color-bg);
   --color-background: var(--internal-dynamic-color-bg);
   --color-primary: var(--internal-dynamic-color-primary);
 }
