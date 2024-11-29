@@ -4,6 +4,14 @@ function isGet(req: IncomingMessage): boolean {
   return req.method === "GET";
 }
 
+function isPost(req: IncomingMessage): boolean {
+  return req.method === "POST";
+}
+
+function isGetOrPost(req: IncomingMessage): boolean {
+  return isGet(req) || isPost(req);
+}
+
 function isFavicon(req: IncomingMessage): boolean {
   return req.url === "/favicon.ico";
 }
@@ -29,4 +37,36 @@ function guessMimeType(ext: string): string {
   return "application/octet-stream";
 }
 
-export { isGet, isStatic, isFavicon, guessMimeType };
+function transformRawData(rawData: string) {
+  const rawPairs = rawData.split("&");
+  const data: Record<string, string> = {};
+  for (const pair of rawPairs) {
+    const [key, rawValue] = pair.split("=");
+    const value = rawValue.replaceAll("+", " ");
+    data[key] = decodeURIComponent(value);
+  }
+  return data;
+}
+
+function handlePost(
+  req: IncomingMessage,
+  callback: (data: Record<string, string>, rawData: string) => void
+) {
+  let postData = "";
+  req.on("data", (chunk) => {
+    postData += chunk;
+  });
+  req.on("end", () => {
+    callback(transformRawData(postData), postData);
+  });
+}
+
+export {
+  isGet,
+  isStatic,
+  isFavicon,
+  guessMimeType,
+  isGetOrPost,
+  isPost,
+  handlePost,
+};
