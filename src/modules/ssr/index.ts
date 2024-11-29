@@ -5,7 +5,15 @@ function isSelfClosingTag(tag: string) {
 function renderAttrs(attrs: any) {
   return attrs
     ? Object.keys(attrs)
-        .map((attrName) => ` ${attrName}="${attrs[attrName]}"`)
+        .map((attrName) => {
+          if (attrs[attrName] === null || attrs[attrName] === undefined) {
+            return "";
+          }
+          if (typeof attrs[attrName] === "boolean") {
+            return attrs[attrName] ? ` ${attrName}` : "";
+          }
+          return ` ${attrName}="${attrs[attrName]}"`;
+        })
         .join("")
     : "";
 }

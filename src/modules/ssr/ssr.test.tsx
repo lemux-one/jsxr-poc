@@ -72,3 +72,24 @@ test("simple component with only children props", () => {
     "<p>Child</p>"
   );
 });
+
+test("boolean attribute when true", () => {
+  expect(html(<input type="checkbox" checked={true} />)).toEqual(
+    '<input type="checkbox" checked/>'
+  );
+  expect(html(<input type="checkbox" checked />)).toEqual(
+    '<input type="checkbox" checked/>'
+  );
+});
+
+test("boolean attribute when false or nullish", () => {
+  expect(html(<input type="checkbox" checked={false} />)).toEqual(
+    '<input type="checkbox"/>'
+  );
+  expect(html(<input type="checkbox" checked={undefined} />)).toEqual(
+    '<input type="checkbox"/>'
+  );
+  expect(html(<input type="checkbox" checked={null} />)).toEqual(
+    '<input type="checkbox"/>'
+  );
+});
