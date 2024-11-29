@@ -9,7 +9,6 @@ type Env = {
 };
 
 let currentEnv: Env;
-
 function env(): Env {
   if (!currentEnv) {
     const isDev = process.env.NODE_ENV !== "production";
@@ -30,4 +29,12 @@ function env(): Env {
   return currentEnv;
 }
 
-export { env, join };
+let currentStorage: Record<string, any>;
+function storage() {
+  if (!currentStorage) {
+    currentStorage = {};
+  }
+  return currentStorage;
+}
+
+export { env, join, storage };
