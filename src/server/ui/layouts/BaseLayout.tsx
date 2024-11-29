@@ -3,6 +3,7 @@ export function BaseLayout(props: any) {
   return (
     <html lang="eng">
       <head>
+        <meta charset="UTF-8" />
         <title>{title} | JSXR Playground</title>
         <link rel="stylesheet" href="/static/index.css"></link>
       </head>
