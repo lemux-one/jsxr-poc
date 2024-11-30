@@ -1,13 +1,7 @@
-import { handlePost, isGetOrPost, isPost, start } from "httpw";
-import { env, storage } from "./server/utils";
-import { HomePage } from "./server/ui/pages/HomePage";
-import { staticHandler } from "./server/handlers";
-
-storage().users = [{ id: 1, name: "Lemurio" }];
-storage().todos = [
-  { id: 1, desc: "Try Tailwind 4 by building something", done: true },
-  { id: 2, desc: "Post an article about it on my blog", done: false },
-];
+import { handlePost, isGetOrPost, isPost } from "httpw";
+import { IHandler } from "httpw/types";
+import { storage } from "../../utils";
+import { HomePage } from "../../ui/pages/HomePage";
 
 function updateMany(allTodos: Record<string, string>) {
   let overrides: Record<string, any>;
@@ -46,28 +40,23 @@ function updateOne(allTodos: Record<string, string>, targetId: string) {
   });
 }
 
-start({
-  port: env().port,
-  host: env().host,
-  handlers: [
-    staticHandler,
-    {
-      accepts: (c) => isGetOrPost(c.req) && c.url.pathname === "/",
-      handle(c) {
-        if (isPost(c.req)) {
-          handlePost(c.req, (data) => {
-            const { _type, ...allTodos } = data;
-            if (_type === "todos") {
-              const targetId = c.url.searchParams.get("todo");
-              if (!targetId) updateMany(allTodos);
-              else updateOne(allTodos, targetId);
-            }
-            c.html(<HomePage />);
-          });
-        } else {
-          c.html(<HomePage />);
+const homeHandler: IHandler = {
+  accepts: (c) => isGetOrPost(c.req) && c.url.pathname === "/",
+  handle(c) {
+    if (isPost(c.req)) {
+      handlePost(c.req, (data) => {
+        const { _type, ...allTodos } = data;
+        if (_type === "todos") {
+          const targetId = c.url.searchParams.get("todo");
+          if (!targetId) updateMany(allTodos);
+          else updateOne(allTodos, targetId);
         }
-      },
-    },
-  ],
-});
+        c.html(<HomePage />);
+      });
+    } else {
+      c.html(<HomePage />);
+    }
+  },
+};
+
+export { homeHandler };

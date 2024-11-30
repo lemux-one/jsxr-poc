@@ -1,5 +1,5 @@
 import { isFavicon, isStatic } from "httpw";
-import { env, join } from "./utils";
+import { env, join } from "../utils";
 import { IHandler } from "httpw/types";
 
 const staticHandler: IHandler = {
