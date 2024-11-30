@@ -1,6 +1,7 @@
 import { start } from "httpw";
 import { env, storage } from "./server/utils";
 import { homeHandler, staticHandler } from "./server/handlers";
+import { todosHandler } from "./server/handlers/pages/todos";
 
 storage().users = [{ id: 1, name: "Lemurio" }];
 storage().todos = [
@@ -11,5 +12,5 @@ storage().todos = [
 start({
   port: env().port,
   host: env().host,
-  handlers: [staticHandler, homeHandler],
+  handlers: [staticHandler, homeHandler, todosHandler],
 });
