@@ -1,4 +1,4 @@
-export function BaseLayout(props: any) {
+export function BaseLayout(props: { title: string; children?: unknown }) {
   const { title, children } = props;
   return (
     <html lang="eng">

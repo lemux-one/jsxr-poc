@@ -29,7 +29,7 @@ export function TodosPage() {
   const userName = storage().users[0].name;
 
   return (
-    <BaseLayout title="Home Page">
+    <BaseLayout title="Todos">
       <main class="p-5">
         <h2 class="text-lg">{userName}'s ToDo list:</h2>
         <form action={endPoint} method="post">

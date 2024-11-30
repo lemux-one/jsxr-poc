@@ -7,7 +7,7 @@ export function HomePage() {
   const isMorning = new Date().getHours() < 12;
 
   return (
-    <BaseLayout title="Home Page">
+    <BaseLayout title="Home">
       <main class="p-5">
         <h1 class="font-bold text-2xl text-primary">Home Page</h1>
         <Show if={isMorning} else={<p>Hello, {userName}!</p>}>
