@@ -51,7 +51,7 @@ const homeHandler: IHandler = {
           if (!targetId) updateMany(allTodos);
           else updateOne(allTodos, targetId);
         }
-        c.html(<HomePage />);
+        c.redir("/");
       });
     } else {
       c.html(<HomePage />);

@@ -7,6 +7,7 @@ interface IHttpContext {
   text(text: string): void;
   html(node: unknown): void;
   file(paths: string[], mime?: string): void;
+  redir(location: string, statusCode?: number): void;
 }
 
 interface IHandler {

@@ -65,6 +65,12 @@ function createContext(
         return;
       }
     },
+    redir(location, statusCode = 303) {
+      res.writeHead(statusCode, STATUS_CODES[statusCode], {
+        Location: location,
+      });
+      res.end();
+    },
   };
 }
 
