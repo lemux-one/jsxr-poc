@@ -2,6 +2,8 @@ import { storage } from "../../utils";
 import { For } from "../helpers";
 import { BaseLayout } from "../layouts/BaseLayout";
 
+const endPoint = "/todos";
+
 function Todo({ todo }: { todo: ITodo }) {
   return (
     <li class="p-1.5">
@@ -14,7 +16,7 @@ function Todo({ todo }: { todo: ITodo }) {
       <button
         class="ml-2 bg-fg text-bg px-1.5 pb-1 cursor-pointer hover:underline"
         type="submit"
-        formaction={`/?todo=${todo.id}`}
+        formaction={`${endPoint}?todo=${todo.id}`}
       >
         Save
       </button>
@@ -30,8 +32,7 @@ export function TodosPage() {
     <BaseLayout title="Home Page">
       <main class="p-5">
         <h2 class="text-lg">{userName}'s ToDo list:</h2>
-        <form action="/" method="post" name={`todos`}>
-          <input type="hidden" name="_type" value="todos" />
+        <form action={endPoint} method="post">
           <ul class="ml-3">
             <For each={todos}>{(todo: ITodo) => <Todo todo={todo} />}</For>
           </ul>
